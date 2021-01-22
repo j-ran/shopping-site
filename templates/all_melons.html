@@ -1,0 +1,27 @@
+{# <!-- this means all_melons.html inherits template from base.html --> #}
+{% extends 'base.html' %}
+
+{% block body %}
+    <h2>Top Selling Melons</h2>
+
+    <div id="melon-list" class="row">
+      {% for melon in melon_list %}
+          <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 melon-summary">
+
+              <div class="well">
+                  {# <!-- in {{}} we need to find the variables within in view function --> #}
+                  {# <!-- these variables are attributes within the melon superclass --> #}
+                  <h3><a href="/melon/{{ melon.melon_id }}">{{ melon.common_name }}</a></h3>
+                  <a href="/melon/{{ melon.melon_id }}">
+                      <img src="{{ melon.image_url }}" class="img-circle">
+                  </a>
+
+                  <div class="price">{{ melon.price_str() }}</div>
+                  <a class="btn btn-primary" href="/melon/{{ melon.melon_id }}">Details</a>
+              </div>
+
+          </div>
+      {% endfor %}
+    </div>
+
+{% endblock %}
